@@ -14,11 +14,13 @@ public class Delete {
         Transaction transaction = session.beginTransaction();
         try {
             //Student student = session.get(Student.class,101);
-            String hql = "Delete From Student";
-            Query query = session.createQuery(hql);
-            int result = query.executeUpdate();
+//            String hql = "Delete From Student";
+//            Query query = session.createQuery(hql);
+//            int result = query.executeUpdate();
+            Student student = session.get(Student.class,101);
+            session.delete(student);
 
-            System.out.println("Deleted " + result + " students.");
+            System.out.println("Deleted students! " +student.getId());
             transaction.commit();
         }catch (Exception e){
             if(transaction != null){

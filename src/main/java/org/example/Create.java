@@ -14,7 +14,13 @@ public class Create {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Student student = new Student(101,"satish",10);
+//        Student student = new Student(101,"satish",10);
+        Student student = new Student();
+        student.setId(101);
+        student.setName("satish");
+        student.setStd(10);
+
+
         session.save(student);
         System.out.println("Student created!");
         transaction.commit();

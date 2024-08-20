@@ -6,17 +6,29 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.utilities.SessionFactoryProvider;
 
+import java.util.Optional;
+
 public class Retrieve {
     public static void main(String[] args) {
         SessionFactory sessionFactory = SessionFactoryProvider.provideSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+        Optional.ofNullable(session.get(Student.class, 101))
+                .ifPresent(student -> {
 
-        Student student = session.get(Student.class,101);
-        System.out.println("Student Id : "+ student.getId());
-        System.out.println("Student Name : "+ student.getName());
-        System.out.println("Student Standard : "+student.getId());
+                    System.out.println("Student Id: " + student.getId());
+                    System.out.println("Student Name: " + student.getName());
+                    System.out.println("Student Standard: " + student.getStd());
 
-        sessionFactory.close();
+
+                }
+
+
+                );
+
+        session.close();
+      sessionFactory.close();
+
     }
+
 }
